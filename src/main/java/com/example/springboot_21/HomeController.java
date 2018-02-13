@@ -30,7 +30,14 @@ public class HomeController{
         return "secure";
     }
 
-    @RequestMapping(value="/register",method= RequestMethod.GET)
+    @RequestMapping(value="/register",method=RequestMethod.GET)
+    public String showRegistrationPage(Model model){
+        model.addAttribute("user",new User());
+        return "registration";
+    }
+
+
+    @RequestMapping(value="/register",method= RequestMethod.POST)
     public String processRegistrationPage(@Valid @ModelAttribute("User") User user, BindingResult result, Model model){
         model.addAttribute("user",user);
         if(result.hasErrors()){
